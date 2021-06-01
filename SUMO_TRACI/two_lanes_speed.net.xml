@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2021-06-01 18:49:16 by Eclipse SUMO netedit Version 1.9.2
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <output>
+        <output-file value="/home/afonso/Desktop/Afonso/FEUP/4_Ano/2ndSemestre/MSSI/Project/SUMO_TRACI/two_lanes_speed.net.xml"/>
+    </output>
+
+    <processing>
+        <offset.disable-normalization value="true"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<net version="1.9" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="-200.00,-100.00,500.00,200.00" origBoundary="10000000000.00,10000000000.00,-10000000000.00,-10000000000.00" projParameter="!"/>
+
+    <edge id=":gneJ2_0" function="internal">
+        <lane id=":gneJ2_0_0" index="0" speed="4.38" length="1.07" shape="-0.27,198.08 0.02,198.21 0.23,198.27 0.45,198.27 0.76,198.22"/>
+    </edge>
+    <edge id=":gneJ3_0" function="internal">
+        <lane id=":gneJ3_0_0" index="0" speed="4.02" length="1.69" shape="99.11,-101.33 99.50,-101.53 99.90,-101.61 100.30,-101.58 100.72,-101.43"/>
+    </edge>
+
+    <edge id="gneE0" from="gneJ0" to="gneJ1" priority="-1">
+        <lane id="gneE0_0" index="0" speed="20.00" length="671.08" shape="-188.90,95.20 482.18,95.20"/>
+        <lane id="gneE0_1" index="1" speed="20.00" length="671.08" shape="-188.90,98.40 482.18,98.40"/>
+    </edge>
+    <edge id="gneE1" from="gneJ0" to="gneJ2" priority="-1">
+        <lane id="gneE1_0" index="0" speed="13.89" length="214.61" shape="-192.22,102.10 -0.27,198.08"/>
+    </edge>
+    <edge id="gneE2" from="gneJ2" to="gneJ1" priority="-1">
+        <lane id="gneE2_0" index="0" speed="13.89" length="491.30" shape="0.76,198.22 482.53,101.86"/>
+    </edge>
+    <edge id="gneE3" from="gneJ0" to="gneJ3" priority="-1">
+        <lane id="gneE3_0" index="0" speed="13.89" length="347.52" shape="-190.04,91.44 99.11,-101.33"/>
+    </edge>
+    <edge id="gneE4" from="gneJ3" to="gneJ1" priority="-1">
+        <lane id="gneE4_0" index="0" speed="13.89" length="431.40" shape="100.72,-101.43 486.57,91.50"/>
+    </edge>
+
+    <junction id="gneJ0" type="dead_end" x="-200.00" y="100.00" incLanes="" intLanes="" shape="-192.93,103.53 -191.50,100.67 -191.81,100.30 -191.52,100.17 -190.94,100.07 -190.07,100.02 -188.90,100.00 -188.90,93.60 -189.15,92.77 -190.93,90.11 -194.42,92.77 -196.65,95.26 -197.61,97.59 -197.32,99.74 -195.76,101.72"/>
+    <junction id="gneJ1" type="dead_end" x="500.00" y="100.00" incLanes="gneE4_0 gneE0_0 gneE0_1 gneE2_0" intLanes="" shape="487.29,90.07 485.86,92.93 486.05,93.30 485.61,93.43 484.82,93.53 483.68,93.58 482.18,93.60 482.18,100.00 482.21,100.29 482.84,103.43 489.15,101.82 493.23,99.97 495.09,97.86 494.72,95.51 492.12,92.91"/>
+    <junction id="gneJ2" type="priority" x="0.00" y="200.00" incLanes="gneE1_0" intLanes=":gneJ2_0_0" shape="1.08,199.78 0.45,196.65 -0.98,199.51 -0.26,199.83 0.01,199.90 0.30,199.91 0.64,199.87">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="gneJ3" type="priority" x="100.00" y="-100.00" incLanes="gneE3_0" intLanes=":gneJ3_0_0" shape="100.00,-100.00 101.43,-102.86 100.34,-103.21 99.80,-103.23 99.27,-103.14 98.74,-102.95 98.22,-102.66">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+
+    <connection from="gneE1" to="gneE2" fromLane="0" toLane="0" via=":gneJ2_0_0" dir="s" state="M"/>
+    <connection from="gneE3" to="gneE4" fromLane="0" toLane="0" via=":gneJ3_0_0" dir="l" state="M"/>
+
+    <connection from=":gneJ2_0" to="gneE2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ3_0" to="gneE4" fromLane="0" toLane="0" dir="l" state="M"/>
+
+</net>
