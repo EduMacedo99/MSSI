@@ -4,7 +4,7 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <output>
-        <output-file value="/home/afonso/Desktop/Afonso/FEUP/4_Ano/2ndSemestre/MSSI/Project/SUMO_TRACI/two_lanes_speed.net.xml"/>
+        <output-file value="/home/afonso/Desktop/Afonso/FEUP/4_Ano/2ndSemestre/MSSI/Project/SUMO_TRACI/net_map.net.xml"/>
     </output>
 
     <processing>
