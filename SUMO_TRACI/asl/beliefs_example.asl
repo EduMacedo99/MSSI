@@ -1,30 +1,36 @@
-// purpose(Day, Reason).
-purpose(4, work).
-purpose(5, shopping).
-purpose(6, doctor).
+// Beliefs
 
-// time_of_arrival(Reason, Time).
-time_of_arrival(work,0830).
+//routes(Route_ID,travel_time)
+route(1,999).
+route(2,999).
+route(3,999).
 
 // today(Day).
 today(4).
+today(5).
 
-// timeNow(Time).
-timeNow(0800).
+// time_now(Time).
+time_now(0800).
 
-// route(route_id, time)
-route(1,30).
-route(2,45).
-route(3,40).
+// time_of_arrival(Day, Des_Arri_Time)
+desirable_arrival_time(4, 0830).
+desirable_arrival_time(5, 0830).
+
++today(Day) : true
+    <- ? desirable_arrival_time(Day, Des_Arri_Time);
+       ! anyRoute(Route_ID).
+
++!anyRoute(Route_ID): route(Route_ID,Travel_Time)
+    <- .print("El carro es ",Route_ID).
 
 
-get_route(TimeDeparture,Route) :-
-    today(Day),
-    purpose(Day,Reason),
-    time_of_arrival(Reason,TimeArrival),
-    route(Route,TravelTime),
-    timeNow(TimeNow),
-    TimeDeparture is TimeNow + TravelTime.
+//+!get_route(Route_ID) : route(id,travel_time)
+//    <-  ?today(Day);
+//        ?time_of_arrival(Day,TimeArrival);
+//       !route(Route,TravelTime).
+
+
+
 
 
 
