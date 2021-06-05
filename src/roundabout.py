@@ -1,34 +1,33 @@
 import os, sys
 import time
+import traci
+import traci.constants
 
+# Parse AgentSpeak output
+#stream = os.popen('python -m agentspeak asl/basic.asl')
+#output = stream.read()
+#print(output)
+
+
+# Start SUMO
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:   
     sys.exit("please declare environment variable 'SUMO_HOME'")
     
-import traci
-import traci.constants
-
-    
-sumoCmd = ["sumo-gui", "-c", "roundabout.sumocfg", "--start"]
+sumoCmd = ["sumo-gui", "-c", "SUMO/roundabout.sumocfg", "--start"]
 traci.start(sumoCmd)
-
 print("Starting SUMO")
 traci.gui.setSchema("View #0", "real world")
 
 
-# Add vehicle with id, route and type
-traci.vehicle.add("10", "route2", "type1",0)
+# Add vehicle with id, route, type and departure time
+# traci.vehicle.add("10", "route2", "type1",0)
 
 
 # Dictionary with all the vehicles information
 vehicle_information = {}
-
-# stream = os.popen('python3 -m agentspeak asl/basic.asl')
-# output = stream.read()
-# print(output)
-# exit()
 
 j = 0
 while(j<83):

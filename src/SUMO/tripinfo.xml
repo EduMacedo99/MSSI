@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 06/05/21 22:11:48 by Eclipse SUMO GUI Version 1.8.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="SUMO/net_map.net.xml"/>
+        <route-files value="SUMO/roundabout.rou.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="SUMO/tripinfo.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <xml-validation value="never"/>
+        <xml-validation.routes value="never"/>
+        <duration-log.disable value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <traci_server>
+        <remote-port value="57339"/>
+    </traci_server>
+
+    <gui_only>
+        <gui-settings-file value="SUMO/gui-settings.cfg"/>
+        <start value="true"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="10" depart="0.00" departLane="gneE3_0" departPos="5.10" departSpeed="0.00" departDelay="0.00" arrival="72.00" arrivalLane="gneE4_0" arrivalPos="431.40" arrivalSpeed="14.59" duration="72.00" routeLength="775.51" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="19.04" rerouteNo="0" devices="tripinfo_10" vType="type1" speedFactor="1.06" vaporized=""/>
+</tripinfos>
