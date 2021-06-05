@@ -1,7 +1,7 @@
 <configuration>
 	
 	<input>
-        <net-file value="two_lanes_speed.net.xml"/>
+        <net-file value="net_map.net.xml"/>
 		<route-files value="roundabout.rou.xml"/>
     </input>
 	
