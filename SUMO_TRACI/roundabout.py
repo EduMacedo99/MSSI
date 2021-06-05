@@ -19,11 +19,16 @@ traci.gui.setSchema("View #0", "real world")
 
 
 # Add vehicle with id, route and type
-# traci.vehicle.add("4", "route2", "type1")
+traci.vehicle.add("10", "route2", "type1",0)
 
 
 # Dictionary with all the vehicles information
 vehicle_information = {}
+
+# stream = os.popen('python3 -m agentspeak asl/basic.asl')
+# output = stream.read()
+# print(output)
+# exit()
 
 j = 0
 while(j<83):
