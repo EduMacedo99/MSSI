@@ -20,7 +20,7 @@ traci.gui.setSchema("View #0", "real world")
 vehicle_information = {}
 trips = []
     
-max_episodes = 3
+max_episodes = 6
 episode = 1
 
 
@@ -40,7 +40,12 @@ while episode <= max_episodes:
     # Add trip of each car
     for trip in trips:
         # traci.vehicle.add(id, route, type, departure_time)
-        traci.vehicle.add(trip["carID"], trip["routeName"], "type1", 0)#TODO: Atualizar departure time
+        if (trip["carID"] == "1"):
+            traci.vehicle.add(trip["carID"], trip["routeName"], "type2", 0)#TODO: Atualizar departure time
+            traci.vehicle.setColor(trip["carID"],(255,0,0))
+        else:
+            traci.vehicle.add(trip["carID"], trip["routeName"], "type1", 0)#TODO: Atualizar departure time
+            traci.vehicle.setColor(trip["carID"],(255,255,0))
     
 
     while traci.simulation.getMinExpectedNumber() > 0:
@@ -69,7 +74,7 @@ while episode <= max_episodes:
         for y in range(1,len(vehicle_information[x])):
             vehicle_average_speed += vehicle_information[x][y]
         vehicle_average_speed = vehicle_average_speed / (len(vehicle_information[x]) - 1)
-        print("Vehicle", x, "  Speed: ", vehicle_average_speed, " Distance: ", vehicle_information[x][0], "time: ", vehicle_information[x][0]/vehicle_average_speed)
+        print("Vehicle", x, "  Speed: ", round(vehicle_average_speed,3), " Distance: ", round(vehicle_information[x][0],3), "Time: ", round(vehicle_information[x][0]/vehicle_average_speed,3))
         
     # Next episode
     episode = episode + 1

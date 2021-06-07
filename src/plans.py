@@ -4,7 +4,7 @@ import json
 from traci.main import start
 from sys import platform
 
-from utils import intial_text, car_test_1, car_test_2, plans
+from utils import intial_text, car_test_1, car_test_2, car_test_3, car_test_4, car_test_5, plans
 
 # From last episode, create another file with the modifications
 # If is the first create a new one with cars and values u want (utils has examples for now)
@@ -20,6 +20,9 @@ def update_beliefs(episode, trips, list):
         # Add car's beliefs
         f.write(car_test_1)
         f.write(car_test_2)
+        f.write(car_test_3)
+        f.write(car_test_4)
+        f.write(car_test_5)
         # Add plan
         f.write(plans)
         f.close()
@@ -51,8 +54,13 @@ def update_beliefs(episode, trips, list):
                 
             # Set new travel time
             # Calculate new average, dont count default values
-            average = ( float(old_travel_time) * (episode-2) + new_travel_time)/(episode-1) 
-            data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")       
+            # average = ( float(old_travel_time) * (episode-2) + new_travel_time)/(episode-1) 
+            if (float(old_travel_time) == float(0)):
+                average = new_travel_time
+            else:
+                average = ( float(old_travel_time) + new_travel_time)/ 2 
+
+            data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")
                  
         # Set new day
         data = data.replace("today(" + str(episode-2), "today(" + str(episode-1))

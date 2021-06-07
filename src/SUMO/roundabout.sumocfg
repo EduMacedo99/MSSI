@@ -1,7 +1,7 @@
 <configuration>
 	
 	<input>
-        <net-file value="net_map.net.xml"/>
+        <net-file value="new.net.xml"/>
 		<route-files value="roundabout.rou.xml"/>
     </input>
 	

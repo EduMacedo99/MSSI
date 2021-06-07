@@ -24,8 +24,8 @@
 <!-- individual car definition -->
 
 <routes>
-   <vType id="type1" accel="0.8" decel="4.5" sigma="0.5" length="5" maxSpeed="15"/>
-   <!-- <vType id="type2" accel="5" decel="4.5" sigma="1" length="5" maxSpeed="70"/> -->
+   <vType id="type1" accel="0.8" decel="4.5" sigma="0.5" length="5" maxSpeed="12"/>
+   <vType id="type2" accel="5" decel="4.5" sigma="0.5" length="5" maxSpeed="20"/>
    <route id="route0" color="1,1,0" edges="gneE1 gneE2"/>
    <route id="route1" color="1,1,0" edges="gneE0"/>
    <route id="route2" color="1,1,0" edges="gneE3 gneE4"/>
