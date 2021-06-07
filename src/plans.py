@@ -52,15 +52,14 @@ def update_beliefs(episode, trips, list):
             # Set new travel time
             # Calculate new average, dont count default values
             average = ( float(old_travel_time) * (episode-2) + new_travel_time)/(episode-1) 
-            data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")
+            data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")       
                  
         # Set new day
-        # TODO:
+        data = data.replace("today(" + str(episode-2), "today(" + str(episode-1))
+        
         f.write(data)
         f.close()
-        
-    return 
-
+    
 
 # Creates asl file for the first episode
 # Executes command
