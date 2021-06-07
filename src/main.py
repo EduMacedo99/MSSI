@@ -55,7 +55,6 @@ while episode <= max_episodes:
                 vehicle_information[vehicles[i]]
             except:
             # if car is not in dictionary add it with no values
-                print("HERE ONLY ONCE PER CAR")
                 vehicle_information[vehicles[i]] = []
                 
             # Update the vehicles information

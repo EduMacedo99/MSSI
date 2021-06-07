@@ -2,6 +2,7 @@
 import os
 import json
 from traci.main import start
+from sys import platform
 
 from utils import intial_text, car_test_1, car_test_2, plans
 
@@ -67,7 +68,10 @@ def update_beliefs(episode, trips, list):
 # Returns a list with dictionaries of each car
 def create_trips(episode):
     ## Executes command
-    stream = os.popen("python -m agentspeak Episodes/episode" + str(episode) + ".asl")
+    if platform == "linux" or platform == "linux2":
+        stream = os.popen("python3 -m agentspeak Episodes/episode" + str(episode) + ".asl")
+    else:
+        stream = os.popen("python -m agentspeak Episodes/episode" + str(episode) + ".asl")
     output = stream.read()
     print(output)
     
