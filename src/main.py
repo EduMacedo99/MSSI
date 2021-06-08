@@ -41,10 +41,10 @@ while episode <= max_episodes:
     for trip in trips:
         # traci.vehicle.add(id, route, type, departure_time)
         if (trip["carID"] == "1"):
-            traci.vehicle.add(trip["carID"], trip["routeName"], "type2", 0)#TODO: Atualizar departure time
+            traci.vehicle.add(trip["carID"], trip["routeName"], "type2", float(trip["departureTime"]+))
             traci.vehicle.setColor(trip["carID"],(255,0,0))
         else:
-            traci.vehicle.add(trip["carID"], trip["routeName"], "type1", 0)#TODO: Atualizar departure time
+            traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
             traci.vehicle.setColor(trip["carID"],(255,255,0))
     
 
