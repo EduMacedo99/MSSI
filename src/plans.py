@@ -35,11 +35,14 @@ def update_beliefs(episode, trips, list):
         
         # Replace informarion
         for carID in list:
+            departure_time = list[carID][1]
             average_speed = 0
-            for y in range(1,len(list[carID])):
+            for y in range(2,len(list[carID])):
                 average_speed += list[carID][y]
-            average_speed = average_speed / (len(list[carID]) - 1)
+            average_speed = average_speed / (len(list[carID]) - 2)
             new_travel_time = list[carID][0]/average_speed
+            # TODO: adicionar desired_departure_time
+            # new_travel_time = list[carID][0]/average_speed + departure_time
             route_name = trips[int(carID)-1]["routeName"]
             
             # Get old travel time 
