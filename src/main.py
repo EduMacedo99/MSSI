@@ -20,7 +20,7 @@ vehicle_information = {}
 routes_information = {}
 trips = []
     
-max_episodes = 2
+max_episodes = 20
 episode = 1
 
 
@@ -44,16 +44,20 @@ while episode <= max_episodes:
     # Get trips
     # trips is a list with dictionaries [{'carID': _, 'routeName':  _}, ... ]
     print("Getting trips...")
-    trips = create_trips(episode);
+    trips = create_trips(episode)
 
     # Add trip of each car
     for trip in trips:
-        if (trip["carID"] == "1"):
-            traci.vehicle.add(trip["carID"], trip["routeName"], "type2", float(trip["departureTime"]))
-            traci.vehicle.setColor(trip["carID"],(255,0,0))
-        else:
-            traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
-            traci.vehicle.setColor(trip["carID"],(255,255,0))
+        # Teste 1
+        traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
+        # Teste 1 com um carro diferente
+        # if (trip["carID"] == "1"):
+        #     traci.vehicle.add(trip["carID"], trip["routeName"], "type2", float(trip["departureTime"]))
+        #     traci.vehicle.setColor(trip["carID"],(255,0,0))
+        # else:
+        #     traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
+        #     traci.vehicle.setColor(trip["carID"],(255,255,0))
+    
     
     
     while traci.simulation.getMinExpectedNumber() > 0:
@@ -63,7 +67,9 @@ while episode <= max_episodes:
         steps += 1
 
         # For each simulation step store
-        # time = str(traci.simulation.getTime())
+        time = str(traci.simulation.getTime())
+        for edge in edges:
+            print(traci.edge.getLastStepVehicleNumber(edge))
         # try:
         #     routes_information[time]
         # except:

@@ -26,3 +26,10 @@ A traveler information system (ATIS) agent will be added to the system as a seco
 # Scenario 3:
 As a final scenario, it would be interesting to study the network by reversing the roles, which means, the BDI agent would be the ATIS instead of the drivers. Therefore the population of drivers would ask for help to choose the route in the beginning of the run, and our ATIS agent based on it is set of beliefs would answer with the route that is appropriate for each driver.
 - route(routeName, capacidade, average_time)
+
+
+# TODO - Tests:
+    Testar 5 carros bdi
+    Testar 5 carros bdi tipo de carros diferentes (velocidade)
+    Testar 5 carros bdi mais transito
+    Testar 5 carros bdi tipo de carros diferentes mais transito
