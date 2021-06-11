@@ -8,6 +8,7 @@ route("route1", 1, 0).
 route("route2", 1, 0).
 desirable_arrival_time(1, 0090).
 expected_travel_time(1, 999).
+car_type(1, "type1").
 """
 
 car_test_2 = """
@@ -17,6 +18,7 @@ route("route1", 2, 0).
 route("route2", 2, 0).
 desirable_arrival_time(2, 0100).
 expected_travel_time(2, 999).
+car_type(2, "type2").
 """
 
 car_test_3 = """
@@ -26,6 +28,7 @@ route("route1", 3, 0).
 route("route2", 3, 0).
 desirable_arrival_time(3, 0080).
 expected_travel_time(3, 999).
+car_type(3, "type1").
 """
 
 car_test_4 = """
@@ -35,6 +38,7 @@ route("route1", 4, 0).
 route("route2", 4, 0).
 desirable_arrival_time(4, 0078).
 expected_travel_time(4, 999).
+car_type(4, "type2").
 """
 
 car_test_5 = """
@@ -44,6 +48,7 @@ route("route1", 5, 0).
 route("route2", 5, 0).
 desirable_arrival_time(5, 0120).
 expected_travel_time(5, 999).
+car_type(5, "type3").
 """
 
 plans = """
@@ -69,5 +74,6 @@ plans = """
        ?desirable_arrival_time(CarID, DesirableArrivalTime);
        ?route(R, CarID, AverageTravelTime);
        +tripDepartureTime(DesirableArrivalTime - AverageTravelTime, R);
-       .print("{'carID': '", CarID, "','routeName': '", R, "', 'departureTime': '", DesirableArrivalTime - AverageTravelTime, "'}").
+       ?car_type(CarID, TypeName);
+       .print("{'carID': '", CarID, "','routeName': '",R, "','type': '", TypeName, "', 'departureTime': '", DesirableArrivalTime - AverageTravelTime, "'}").
 """

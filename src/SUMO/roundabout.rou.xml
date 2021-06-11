@@ -26,9 +26,12 @@
 <routes>
    <vType id="type1" accel="0.8" decel="4.5" sigma="0.5" length="5" maxSpeed="12"/>
    <vType id="type2" accel="5" decel="4.5" sigma="0.5" length="5" maxSpeed="20"/>
+   <vType id="type3" accel="0.8" decel="4.5" sigma="0.5" length="8" maxSpeed="8"/>
+
    <route id="route0" color="1,1,0" edges="gneE1 gneE2"/>
    <route id="route1" color="1,1,0" edges="gneE0"/>
    <route id="route2" color="1,1,0" edges="gneE3 gneE4"/>
+
   <!-- <vehicle id="0" type="type1" route="route0" depart="0" color="1,0,0"/>
    <vehicle id="1" type="type1" route="route0" depart="2" color="0,1,0"/>
    <vehicle id="2" type="type1" route="route1" depart="4" color="1,0,0"/>

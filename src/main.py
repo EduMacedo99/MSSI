@@ -12,7 +12,8 @@ else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
 sumoCmd = ["sumo-gui", "-c", "SUMO/roundabout.sumocfg", "--start"]
 
-
+#Colors of cars
+colors = {"type1":(255,0,0) ,"type2": (255,255,0), "type3": (255,255,255) }
 
 # Dictionary with all the vehicles information
 vehicle_information = {}
@@ -49,7 +50,8 @@ while episode <= max_episodes:
     # Add trip of each car
     for trip in trips:
         # Teste 1
-        traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
+        traci.vehicle.add(trip["carID"], trip["routeName"], trip["type"], float(trip["departureTime"]))
+        traci.vehicle.setColor(trip["carID"], colors[trip["type"]])
         # Teste 1 com um carro diferente
         # if (trip["carID"] == "1"):
         #     traci.vehicle.add(trip["carID"], trip["routeName"], "type2", float(trip["departureTime"]))

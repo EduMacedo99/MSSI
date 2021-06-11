@@ -13,7 +13,6 @@
 TODO: 
 * Como se faz o while de episodios (terminar o sumo e voltar a abrir?)
 * como adicionar os carros, ler ficheiro' ou random
-* adicionar o tipo de carro MAX SPEED aos beliefs
 
 # Scenario 1:
 In the first scenario, we assume that the drivers can not ask for help. Hence their decision-making process to choose the route is solely done by their own set of base beliefs.
