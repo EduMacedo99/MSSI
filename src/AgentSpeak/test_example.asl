@@ -17,7 +17,7 @@ route("route0", 2, 70).
 route("route1", 2, 80).
 route("route2", 2, 50).//<- car 2 deve escolher a rota 2
 
-// car_type(CarID, DesirableArrivalTime).
+// car_type(CarID, CarType).
 car_type(1, "type1").
 car_type(2, "type2").
 

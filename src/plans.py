@@ -35,14 +35,14 @@ def update_beliefs(episode, trips, list):
         
         # Replace informarion
         for carID in list:
-            departure_time = list[carID][1]
+            delay = list[carID][1] #time that the car is waiting to departure
             average_speed = 0
             for y in range(2,len(list[carID])):
                 average_speed += list[carID][y]
             average_speed = average_speed / (len(list[carID]) - 2)
-            new_travel_time = list[carID][0]/average_speed
-            # TODO: adicionar desired_departure_time
-            # new_travel_time = list[carID][0]/average_speed + departure_time
+            # new_travel_time = list[carID][0]/average_speed
+            # TODO: Real travel time = departure do sumo + o tempo em sumo ?
+            new_travel_time = list[carID][0]/average_speed + delay
             route_name = trips[int(carID)-1]["routeName"]
             
             # Get old travel time 
@@ -61,7 +61,7 @@ def update_beliefs(episode, trips, list):
             if (float(old_travel_time) == float(0)):
                 average = new_travel_time
             else:
-                average = ( float(old_travel_time) + new_travel_time)/ 2 
+                average = (float(old_travel_time) + new_travel_time)/ 2
 
             data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")
                  

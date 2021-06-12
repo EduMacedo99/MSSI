@@ -6,7 +6,7 @@ today(0, 1).
 route("route0", 1, 0).
 route("route1", 1, 0).
 route("route2", 1, 0).
-desirable_arrival_time(1, 0090).
+desirable_arrival_time(1, 090).
 expected_travel_time(1, 999).
 car_type(1, "type1").
 """
@@ -16,7 +16,7 @@ today(0, 2).
 route("route0", 2, 0).
 route("route1", 2, 0).
 route("route2", 2, 0).
-desirable_arrival_time(2, 0100).
+desirable_arrival_time(2, 0120).
 expected_travel_time(2, 999).
 car_type(2, "type2").
 """
@@ -26,7 +26,7 @@ today(0, 3).
 route("route0", 3, 0).
 route("route1", 3, 0).
 route("route2", 3, 0).
-desirable_arrival_time(3, 0080).
+desirable_arrival_time(3, 0110).
 expected_travel_time(3, 999).
 car_type(3, "type1").
 """
@@ -36,7 +36,7 @@ today(0, 4).
 route("route0", 4, 0).
 route("route1", 4, 0).
 route("route2", 4, 0).
-desirable_arrival_time(4, 0078).
+desirable_arrival_time(4, 0125).
 expected_travel_time(4, 999).
 car_type(4, "type2").
 """
@@ -46,7 +46,7 @@ today(0, 5).
 route("route0", 5, 0).
 route("route1", 5, 0).
 route("route2", 5, 0).
-desirable_arrival_time(5, 0120).
+desirable_arrival_time(5, 0150).
 expected_travel_time(5, 999).
 car_type(5, "type3").
 """

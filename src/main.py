@@ -11,13 +11,13 @@ def print_vehicle_information(vehicle_information):
         for y in range(2,len(vehicle_information[x])):
             vehicle_average_speed += vehicle_information[x][y]
         vehicle_average_speed = vehicle_average_speed / (len(vehicle_information[x]) - 2)
-        print("Vehicle", x, "  Speed: ", round(vehicle_average_speed,3), " Distance: ", round(vehicle_information[x][0],3), "Time: ", round(vehicle_information[x][0]/vehicle_average_speed,3), "Departure Time: ", round(vehicle_information[x][1],3))
+        print("Vehicle", x, "  Speed: ", round(vehicle_average_speed,3), " Distance: ", round(vehicle_information[x][0],3), "TravelTime_SUMO: ", round(vehicle_information[x][0]/vehicle_average_speed,3), "Delay: ", round(vehicle_information[x][1],3))
     
 def add_random_vehicles(traci):
     for x in range(0,10):
         for y  in range(0,10):
             traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (10 * x))
-        
+            traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
 
 # Start SUMO
 if 'SUMO_HOME' in os.environ:
@@ -32,11 +32,11 @@ colors = {"type1":(255,0,0) ,"type2": (255,255,0), "type3": (255,255,255) }
 
 # Dictionary with all the vehicles information
 vehicle_information = {}
-# vehicle_informations = {"time":0, "distance":0, "speed":[]}
+# vehicle_informations a list of lists. First index is the vehicle_ID and the second is an index for the following list {"distance":0, "time":0, "speed":[]}
 routes_information = {}
 trips = []
     
-max_episodes = 2
+max_episodes = 5
 episode = 1
 
 traci.start(sumoCmd)
@@ -45,7 +45,8 @@ traci.gui.setSchema("View #0", "real world")
     
 while episode <= max_episodes:
 
-    # traci.load(['-c', "SUMO/roundabout.sumocfg"])
+    traci.load(['-c', "SUMO/roundabout.sumocfg"]) #Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
+
     
     edges = traci.edge.getIDList()
     # Start episode 
@@ -66,10 +67,15 @@ while episode <= max_episodes:
     # trips is a list with dictionaries [{'carID': _, 'routeName':  _}, ... ]
     print("Getting trips...")
     trips = create_trips(episode)
-
+    i=0
     # Add trip of each car
     for trip in trips:
         # Teste 1
+        # Caso recebemos um valore negativo do departure time passa para 0
+        if float(trip["departureTime"]) < 0:
+            trips[i]["departureTime"] = "0"
+
+        i += 1
         traci.vehicle.add(trip["carID"], trip["routeName"], trip["type"], float(trip["departureTime"]))
         traci.vehicle.setColor(trip["carID"], colors[trip["type"]])
         # Teste 1 com um carro diferente
@@ -112,12 +118,12 @@ while episode <= max_episodes:
                 except:
                 # if car is not in dictionary add it with no values
                     vehicle_information[vehicles[i]] = []
-                    # vehicle_information[vehicles[i]] = {"time":-1, "distance":-1, "speed":[]}
+                    # vehicle_information[vehicles[i]] = {"distance":-1, "time":-1, "speed":[]}
                     
                 # Update the vehicles information
                 if (len(vehicle_information[vehicles[i]]) == 0):
                     vehicle_information[vehicles[i]].append(traci.vehicle.getDistance(vehicles[i]))
-                    vehicle_information[vehicles[i]].append((steps) - float(trips[int(vehicles[i])-1]["departureTime"]))
+                    vehicle_information[vehicles[i]].append((steps)-float(trips[int(vehicles[i])-1]["departureTime"]))
                 # Update speed and distance travelled 
                 vehicle_information[vehicles[i]][0] = traci.vehicle.getDistance(vehicles[i])
                 vehicle_information[vehicles[i]].append(traci.vehicle.getSpeed(vehicles[i]))
@@ -131,7 +137,7 @@ while episode <= max_episodes:
 
     episode = episode + 1
     
-    #traci.close(False)
+traci.close(False)
     
         
 
