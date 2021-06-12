@@ -54,7 +54,8 @@ while episode <= max_episodes:
     
     steps = 0
 
-    add_random_vehicles(traci)
+    # Test 3 and 4
+    # add_random_vehicles(traci)
 
     # Update beliefs if any
     update_beliefs(episode, trips, vehicle_information)   
@@ -78,13 +79,6 @@ while episode <= max_episodes:
         i += 1
         traci.vehicle.add(trip["carID"], trip["routeName"], trip["type"], float(trip["departureTime"]))
         traci.vehicle.setColor(trip["carID"], colors[trip["type"]])
-        # Teste 1 com um carro diferente
-        # if (trip["carID"] == "1"):
-        #     traci.vehicle.add(trip["carID"], trip["routeName"], "type2", float(trip["departureTime"]))
-        #     traci.vehicle.setColor(trip["carID"],(255,0,0))
-        # else:
-        #     traci.vehicle.add(trip["carID"], trip["routeName"], "type1", float(trip["departureTime"]))
-        #     traci.vehicle.setColor(trip["carID"],(255,255,0))
     
     
     while traci.simulation.getMinExpectedNumber() > 0:
@@ -123,7 +117,7 @@ while episode <= max_episodes:
                 # Update the vehicles information
                 if (len(vehicle_information[vehicles[i]]) == 0):
                     vehicle_information[vehicles[i]].append(traci.vehicle.getDistance(vehicles[i]))
-                    vehicle_information[vehicles[i]].append((steps)-float(trips[int(vehicles[i])-1]["departureTime"]))
+                    vehicle_information[vehicles[i]].append((steps-1) - float(trips[int(vehicles[i])-1]["departureTime"]))
                 # Update speed and distance travelled 
                 vehicle_information[vehicles[i]][0] = traci.vehicle.getDistance(vehicles[i])
                 vehicle_information[vehicles[i]].append(traci.vehicle.getSpeed(vehicles[i]))
