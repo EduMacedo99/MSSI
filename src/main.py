@@ -24,11 +24,14 @@ trips = []
 max_episodes = 20
 episode = 1
 
-
+traci.start(sumoCmd)
+print("Starting SUMO...")
+traci.gui.setSchema("View #0", "real world")
+    
 while episode <= max_episodes:
-    traci.start(sumoCmd)
-    print("Starting SUMO...")
-    traci.gui.setSchema("View #0", "real world")
+
+    traci.load(['-c', "SUMO/roundabout.sumocfg"])
+    
     edges = traci.edge.getIDList()
     # Start episode 
     print("\nEpisode " + str(episode))
@@ -61,7 +64,6 @@ while episode <= max_episodes:
         #     traci.vehicle.setColor(trip["carID"],(255,255,0))
     
     
-    
     while traci.simulation.getMinExpectedNumber() > 0:
         #this runs one simulation step
         # time.sleep(0.5);
@@ -70,8 +72,8 @@ while episode <= max_episodes:
 
         # For each simulation step store
         time = str(traci.simulation.getTime())
-        for edge in edges:
-            print(traci.edge.getLastStepVehicleNumber(edge))
+        #for edge in edges:
+        #    print(traci.edge.getLastStepVehicleNumber(edge))
         # try:
         #     routes_information[time]
         # except:
@@ -114,8 +116,10 @@ while episode <= max_episodes:
     
 
     episode = episode + 1
-
     
-    traci.close()
+    #traci.close(False)
+    
+        
+
 
 
