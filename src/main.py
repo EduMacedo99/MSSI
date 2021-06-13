@@ -36,7 +36,7 @@ vehicle_information = {}
 routes_information = {}
 trips = []
     
-max_episodes = 5
+max_episodes = 20
 episode = 1
 
 traci.start(sumoCmd)
