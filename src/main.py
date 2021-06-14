@@ -17,7 +17,7 @@ def add_random_vehicles(traci):
     for x in range(0,10):
         for y  in range(0,10):
             traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (10 * x))
-            traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
+            traci.vehicle.setColor("random"+str((10*x+y)), (random.randint(0,255),random.randint(0,255),random.randint(0,255)))
 
 # Start SUMO
 if 'SUMO_HOME' in os.environ:

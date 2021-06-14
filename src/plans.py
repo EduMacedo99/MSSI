@@ -3,6 +3,8 @@ import os
 import json
 from traci.main import start
 from sys import platform
+import csv
+
 
 from utils import intial_text, car_test_1, car_test_2, car_test_3, car_test_4, car_test_5, plans
 
@@ -15,6 +17,11 @@ def update_beliefs(episode, trips, list):
         # Create "Episodes" folder if dont exists
         if not os.path.exists("Episodes"):
             os.makedirs("Episodes")
+        if not os.path.exists("CarCSV"):
+            os.makedirs("CarCSV")
+        for x in range(1,5):
+            carFile = open('CarCSV/'+"car_" + str(x) + '.csv', 'a')
+
         f = open("Episodes/episode" + str(episode) + ".asl", "w")
         f.write(intial_text) 
         # Add car's beliefs
@@ -31,7 +38,7 @@ def update_beliefs(episode, trips, list):
         f_last = open("Episodes/episode" + str(episode-1) + ".asl", "r")
         f = open("Episodes/episode" + str(episode) + ".asl", "w")
         data = f_last.read()
-        f_last.close()
+        f_last.close()     
         
         # Replace informarion
         for carID in list:
@@ -62,6 +69,13 @@ def update_beliefs(episode, trips, list):
                 average = new_travel_time
             else:
                 average = (float(old_travel_time) + new_travel_time)/ 2
+
+            carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a')
+            writer = csv.writer(carFile)
+            # carID,route,routeAverageTravelTime,speed,distance,travelTime,delay
+            carCSV = [carID,route_name,average,average_speed,(len(list[carID]) - 2),new_travel_time,delay]
+            writer.writerow(carCSV)
+            carFile.close()
 
             data = data.replace(aux_str + old_travel_time +").", aux_str + str(average) +").")
                  
