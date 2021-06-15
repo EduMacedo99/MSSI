@@ -100,7 +100,6 @@ while episode <= max_episodes:
     i=0
     # Add trip of each car
     for trip in trips:
-        # Teste 1
         # Caso recebemos um valore negativo do departure time passa para 0
         if float(trip["departureTime"]) < 0:
             trips[i]["departureTime"] = "0"
