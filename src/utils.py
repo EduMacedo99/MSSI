@@ -1,7 +1,7 @@
 intial_text = """// Day e AverageTravelTime DEVE SER ATUALIZADO A CADA EPISODIO 
 """
 # Test 1 and 3
-'''
+
 
 car_test_1 = """
 today(0, 1).
@@ -53,8 +53,8 @@ expected_travel_time(5, 999).
 car_type(5, "type1").
 """
 
-'''
 
+'''
 # Test 2 and 4
 car_test_1 = """
 today(0, 1).
@@ -105,6 +105,8 @@ desirable_arrival_time(5, 0150).
 expected_travel_time(5, 999).
 car_type(5, "type3").
 """
+
+'''
 
 plans = """
 // NAO E PRECISO MEXER EM PRINCIPIO

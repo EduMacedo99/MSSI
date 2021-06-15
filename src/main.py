@@ -82,7 +82,7 @@ while episode <= max_episodes:
     steps = 0
 
     # Test 3 and 4
-    # add_random_vehicles(traci)
+    add_random_vehicles(traci)
 
     # Update beliefs if any
     update_beliefs(episode, trips, vehicle_information, route_times)   
