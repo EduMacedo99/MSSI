@@ -48,7 +48,6 @@ def update_beliefs(episode, trips, list, route_times={}):
                 average_speed += list[carID][y]
             average_speed = average_speed / (len(list[carID]) - 2)
             # new_travel_time = list[carID][0]/average_speed
-            # TODO: Real travel time = departure do sumo + o tempo em sumo ?
             new_travel_time = list[carID][0]/average_speed + delay
             route_name = trips[int(carID)-1]["routeName"]
             
@@ -81,7 +80,7 @@ def update_beliefs(episode, trips, list, route_times={}):
             carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a')
             writer = csv.writer(carFile)
             # carID,route,routeAverageTravelTime,speed,distance,travelTime,delay
-            carCSV = [carID,route_name,average,average_speed,(len(list[carID]) - 2),new_travel_time,delay]
+            carCSV = [carID,route_name,average,average_speed,list[carID][0],new_travel_time,delay]
             writer.writerow(carCSV)
             carFile.close()
 

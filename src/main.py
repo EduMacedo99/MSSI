@@ -141,7 +141,7 @@ while episode <= max_episodes:
                 vehicle_information[vehicles[i]].append(traci.vehicle.getSpeed(vehicles[i]))
           
 
-    # print_vehicle_information(vehicle_information)
+    print_vehicle_information(vehicle_information)
     
     # route_times = atis_update_information(trips,vehicle_information)
     
