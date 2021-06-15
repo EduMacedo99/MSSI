@@ -5,8 +5,7 @@ from traci.main import start
 from sys import platform
 import csv
 
-
-from utils import intial_text, car_test_1, car_test_2, car_test_3, car_test_4, car_test_5, plans
+from utils import *
 
 # From last episode, create another file with the modifications
 # If is the first create a new one with cars and values u want (utils has examples for now)
@@ -30,6 +29,11 @@ def update_beliefs(episode, trips, list, route_times={}):
         f.write(car_test_3)
         f.write(car_test_4)
         f.write(car_test_5)
+        # f.write(car_test_6)
+        # f.write(car_test_7)
+        # f.write(car_test_8)
+        # f.write(car_test_9)
+        # f.write(car_test_10)
         # Add plan
         f.write(plans)
         f.close()
