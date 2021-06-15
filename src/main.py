@@ -19,6 +19,33 @@ def add_random_vehicles(traci):
             traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (10 * x))
             traci.vehicle.setColor("random"+str((10*x+y)), (random.randint(0,255),random.randint(0,255),random.randint(0,255)))
 
+def atis_update_information(trips,vehicle_information):
+    route_times = {}
+    for trip in trips:
+        vehicle_average_speed = 0
+        for x in range(2,len(vehicle_information[trip["carID"]])):
+            vehicle_average_speed += vehicle_information[trip["carID"]][x]
+        vehicle_average_speed = vehicle_average_speed / (len(vehicle_information[trip["carID"]]) - 2)
+        vehicle_average_time = vehicle_information[trip["carID"]][0] / vehicle_average_speed
+        try:
+            routes_information[trip["routeName"]]
+            route_times[trip["routeName"]]
+        except:
+            routes_information[trip["routeName"]] = []
+            route_times[trip["routeName"]] = 0
+        routes_information[trip["routeName"]].append(vehicle_average_time)
+    
+    # print(routes_information)
+    for routes in routes_information:
+        route_speed = 0
+        for speeds in routes_information[routes]:
+            route_speed += speeds
+        route_average_speed = route_speed / len(routes_information[routes])
+        route_times[routes] = route_average_speed
+
+    return route_times
+
+
 # Start SUMO
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
@@ -34,6 +61,7 @@ colors = {"type1":(255,0,0) ,"type2": (255,255,0), "type3": (255,255,255) }
 vehicle_information = {}
 # vehicle_informations a list of lists. First index is the vehicle_ID and the second is an index for the following list {"distance":0, "time":0, "speed":[]}
 routes_information = {}
+route_times = {}
 trips = []
     
 max_episodes = 20
@@ -46,7 +74,6 @@ traci.gui.setSchema("View #0", "real world")
 while episode <= max_episodes:
 
     traci.load(['-c', "SUMO/roundabout.sumocfg"]) #Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
-
     
     edges = traci.edge.getIDList()
     # Start episode 
@@ -58,11 +85,13 @@ while episode <= max_episodes:
     # add_random_vehicles(traci)
 
     # Update beliefs if any
-    update_beliefs(episode, trips, vehicle_information)   
+    update_beliefs(episode, trips, vehicle_information, route_times)   
     # Reset vehicle information
     vehicle_information = {}
+    route_times = {}
+
     # Reset routes information
-    routes_information
+    routes_information = {}
     
     # Get trips
     # trips is a list with dictionaries [{'carID': _, 'routeName':  _}, ... ]
@@ -89,19 +118,8 @@ while episode <= max_episodes:
 
         # For each simulation step store
         time = str(traci.simulation.getTime())
-        #for edge in edges:
-        #    print(traci.edge.getLastStepVehicleNumber(edge))
-        # try:
-        #     routes_information[time]
-        # except:
-        #     routes_information[time] = [ [] for _ in range(len(edges)-2) ]
-            
-        # for edge in edges:
-        #     if(edge[0] != ":"):
-        #         edge_num = int(edge[len(edge)-1])
-        #         routes_information[time][edge_num] = (traci.edge.getLastStepVehicleNumber(edge))
-                
 
+            
         vehicles=traci.vehicle.getIDList()
         for i in range(0,len(vehicles)): 
             # check if car is in dictionary
@@ -122,12 +140,12 @@ while episode <= max_episodes:
                 vehicle_information[vehicles[i]][0] = traci.vehicle.getDistance(vehicles[i])
                 vehicle_information[vehicles[i]].append(traci.vehicle.getSpeed(vehicles[i]))
           
-        # edges = traci.edge.getIDList()
-        # for edge in edges:
-        #     print("Number of cars in edge ", edge, ": " ,traci.edge.getLastStepVehicleNumber(edge))
 
-    print_vehicle_information(vehicle_information)
+    # print_vehicle_information(vehicle_information)
     
+    # route_times = atis_update_information(trips,vehicle_information)
+    
+        
 
     episode = episode + 1
     

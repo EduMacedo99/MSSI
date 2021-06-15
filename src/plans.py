@@ -10,7 +10,7 @@ from utils import intial_text, car_test_1, car_test_2, car_test_3, car_test_4, c
 
 # From last episode, create another file with the modifications
 # If is the first create a new one with cars and values u want (utils has examples for now)
-def update_beliefs(episode, trips, list):
+def update_beliefs(episode, trips, list, route_times={}):
     
     if episode == 1:
         # Create file from utils examples
@@ -66,9 +66,17 @@ def update_beliefs(episode, trips, list):
             # Calculate new average, dont count default values
             # average = ( float(old_travel_time) * (episode-2) + new_travel_time)/(episode-1) 
             if (float(old_travel_time) == float(0)):
-                average = new_travel_time
+                if(route_times == {}):
+                    average = new_travel_time
+                else:
+                    average = 0.4 * (new_travel_time) + 0.6 * (route_times[route_name])
+                    print('bdi: ', new_travel_time, 'atis: ', average)
             else:
-                average = (float(old_travel_time) + new_travel_time)/ 2
+                if(route_times == {}):
+                    average = (float(old_travel_time) + new_travel_time)/ 2
+                else:
+                    average = 0.4 * ((float(old_travel_time) + new_travel_time)/ 2) + 0.6 * (route_times[route_name])
+                    print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'atis: ', average)
 
             carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a')
             writer = csv.writer(carFile)
