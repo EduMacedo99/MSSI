@@ -86,7 +86,7 @@ def update_beliefs(episode, trips, list, route_times={}):
                     print('bdi: ', new_travel_time, 'atis: ', average)
             else:
                 if(route_times == {}):
-                    average = (float(old_travel_time) + new_travel_time)/ 2
+                    average = (0.2*(float(old_travel_time)) + 0.8*new_travel_time)/ 2
                 else:
                     average = 0.4 * ((float(old_travel_time) + new_travel_time)/ 2) + 0.6 * (route_times[route_name])
                     print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'atis: ', average)
