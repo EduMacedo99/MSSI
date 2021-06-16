@@ -18,7 +18,7 @@ def update_beliefs(episode, trips, list, route_times={}):
             os.makedirs("Episodes")
         if not os.path.exists("CarCSV"):
             os.makedirs("CarCSV")
-        for x in range(1,5):
+        for x in range(1,20):
             carFile = open('CarCSV/'+"car_" + str(x) + '.csv', 'a')
 
         f = open("Episodes/episode" + str(episode) + ".asl", "w")
@@ -29,11 +29,21 @@ def update_beliefs(episode, trips, list, route_times={}):
         f.write(car_test_3)
         f.write(car_test_4)
         f.write(car_test_5)
-        # f.write(car_test_6)
-        # f.write(car_test_7)
-        # f.write(car_test_8)
-        # f.write(car_test_9)
-        # f.write(car_test_10)
+        f.write(car_test_6)
+        f.write(car_test_7)
+        f.write(car_test_8)
+        f.write(car_test_9)
+        f.write(car_test_10)
+        f.write(car_test_11)
+        f.write(car_test_12)
+        f.write(car_test_13)
+        f.write(car_test_14)
+        f.write(car_test_15)
+        f.write(car_test_16)
+        f.write(car_test_17)
+        f.write(car_test_18)
+        f.write(car_test_19)
+        f.write(car_test_20)
         # Add plan
         f.write(plans)
         f.close()
@@ -81,7 +91,7 @@ def update_beliefs(episode, trips, list, route_times={}):
                     average = 0.4 * ((float(old_travel_time) + new_travel_time)/ 2) + 0.6 * (route_times[route_name])
                     print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'atis: ', average)
 
-            carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a')
+            carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a', newline='')
             writer = csv.writer(carFile)
             # carID,route,routeAverageTravelTime,speed,distance,travelTime,delay
             carCSV = [carID,route_name,average,average_speed,list[carID][0],new_travel_time,delay]

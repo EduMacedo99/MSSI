@@ -55,7 +55,7 @@ else:
 sumoCmd = ["sumo-gui", "-c", "SUMO/roundabout.sumocfg", "--start"]
 
 #Colors of cars
-colors = {"type1":(255,0,0) ,"type2": (255,255,0), "type3": (255,255,255) }
+colors = {"type1":(0,255,0) ,"type2": (255,255,0), "type3": (255,255,255) }
 
 # Dictionary with all the vehicles information
 vehicle_information = {}
