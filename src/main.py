@@ -73,7 +73,8 @@ traci.gui.setSchema("View #0", "real world")
     
 while episode <= max_episodes:
 
-    traci.load(['-c', "SUMO/roundabout.sumocfg"]) #Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
+    # Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
+    traci.load(['-c', "SUMO/roundabout.sumocfg", "--start"])
     
     edges = traci.edge.getIDList()
     # Start episode 
