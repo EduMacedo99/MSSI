@@ -16,8 +16,15 @@ def print_vehicle_information(vehicle_information):
 def add_random_vehicles(traci, cars_num):
     for x in range(0,int(cars_num/10)):
         for y  in range(0,10):
-            traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (5 * x))
-            traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
+            if 0 <= cars_num <= 200:
+                traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (10 * x))
+                traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
+            elif 201 <= cars_num <= 500:
+                traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (5 * x))
+                traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
+            elif 501 <= cars_num <= 1000:
+                traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (2 * x))
+                traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
 
 def atis_update_information(trips,vehicle_information):
     route_times = {}
