@@ -1,0 +1,15 @@
+
+<routes>
+   <!-- Vehicle type -->
+   <vType id="type1" accel="0.8" decel="4.5" sigma="0.5" length="5" maxSpeed="12"/>
+   <vType id="type2" accel="5" decel="4.5" sigma="0.5" length="5" maxSpeed="20"/>
+   <vType id="type3" accel="0.8" decel="4.5" sigma="0.5" length="8" maxSpeed="8"/>
+   <!-- Vehicle type -->
+
+   <!-- Routes -->
+   <route id="route0" color="1,1,0" edges="gneE9 gneE11"/>
+   <route id="route1" color="1,1,0" edges="gneE5 gneE7"/>
+   <route id="route2" color="1,1,0" edges="gneE10 gneE12"/>
+   <!-- Routes -->
+  
+</routes>

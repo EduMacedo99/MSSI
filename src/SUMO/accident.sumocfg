@@ -1,8 +1,8 @@
 <configuration>
 	
 	<input>
-        <net-file value="new.net.xml"/>
-		<route-files value="roundabout.rou.xml"/>
+        <net-file value="new_acident.net.xml"/>
+		<route-files value="routes_accident.xml"/>
     </input>
 	
 	<processing>

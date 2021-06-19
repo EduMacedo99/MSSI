@@ -46,13 +46,47 @@ def atis_update_information(trips,vehicle_information):
     return route_times
 
 
+num_random_cars = 0
+atis = False
+accident = False
+
+try:
+	if(sys.argv[1] and sys.argv[2] and sys.argv[3]):
+		print("")
+except:
+	print("To run please provide the following arguments: Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]")
+	exit()
+
+if( 0 <= int(sys.argv[1]) <= 1000):
+    num_random_cars = int(sys.argv[1])
+else:
+	print("To run please provide the following arguments: Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]")
+	exit()
+
+if(sys.argv[2] == "BDI"):
+	atis = False
+elif(sys.argv[2] == "ATIS"):
+	atis = True
+else:
+	print("To run please provide the following arguments: Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]")
+	exit()
+
+if(sys.argv[3] == "True"):
+	accident = True
+elif(sys.argv[3] == "False"):
+	accident = False
+else:
+	print("To run please provide the following arguments: Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]")
+	exit()
+
+
 # Start SUMO
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:   
     sys.exit("please declare environment variable 'SUMO_HOME'")
-sumoCmd = ["sumo-gui", "-c", "SUMO/roundabout.sumocfg", "--start"]
+sumoCmd = ["sumo-gui", "-c", "SUMO/clear_road.sumocfg", "--start"]
 
 #Colors of cars
 colors = {"type1":(0,255,0) ,"type2": (255,255,0), "type3": (255,255,255) }
@@ -74,7 +108,13 @@ traci.gui.setSchema("View #0", "real world")
 while episode <= max_episodes:
 
     # Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
-    traci.load(['-c', "SUMO/roundabout.sumocfg", "--start"])
+    if accident:
+        if (episode < 15):
+            traci.load(['-c', "SUMO/clear_road.sumocfg", "--start"])
+        else:
+            traci.load(['-c', "SUMO/accident.sumocfg", "--start"])
+    else:
+            traci.load(['-c', "SUMO/clear_road.sumocfg", "--start"])
     
     edges = traci.edge.getIDList()
     # Start episode 
@@ -83,7 +123,7 @@ while episode <= max_episodes:
     steps = 0
 
     # Test 3 and 4
-    add_random_vehicles(traci, 100)
+    add_random_vehicles(traci, num_random_cars)
 
     # Update beliefs if any
     update_beliefs(episode, trips, vehicle_information, route_times)   
@@ -143,7 +183,8 @@ while episode <= max_episodes:
 
     print_vehicle_information(vehicle_information)
     
-    # route_times = atis_update_information(trips,vehicle_information)
+    if atis:
+        route_times = atis_update_information(trips,vehicle_information)
     
         
 
