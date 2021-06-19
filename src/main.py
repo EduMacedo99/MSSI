@@ -13,10 +13,10 @@ def print_vehicle_information(vehicle_information):
         vehicle_average_speed = vehicle_average_speed / (len(vehicle_information[x]) - 2)
         print("Vehicle", x, "  Speed: ", round(vehicle_average_speed,3), " Distance: ", round(vehicle_information[x][0],3), "TravelTime_SUMO: ", round(vehicle_information[x][0]/vehicle_average_speed,3), "Delay: ", round(vehicle_information[x][1],3))
     
-def add_random_vehicles(traci):
-    for x in range(0,10):
+def add_random_vehicles(traci, cars_num):
+    for x in range(0,int(cars_num/10)):
         for y  in range(0,10):
-            traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (10 * x))
+            traci.vehicle.add("random"+str((10*x+y)), "route"+str(random.randint(0,2)), "type"+str(random.randint(1,3)), 50 + (5 * x))
             traci.vehicle.setColor("random"+str((10*x+y)), (255,20,147))
 
 def atis_update_information(trips,vehicle_information):
@@ -83,7 +83,7 @@ while episode <= max_episodes:
     steps = 0
 
     # Test 3 and 4
-    add_random_vehicles(traci)
+    add_random_vehicles(traci, 100)
 
     # Update beliefs if any
     update_beliefs(episode, trips, vehicle_information, route_times)   
