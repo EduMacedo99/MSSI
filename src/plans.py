@@ -83,13 +83,13 @@ def update_beliefs(episode, trips, list, route_times={}):
                     average = new_travel_time
                 else:#ATIS
                     average = 0.4 * (new_travel_time) + 0.6 * (route_times[route_name])
-                    print('bdi: ', new_travel_time, 'atis: ', average)
+                    print('bdi: ', new_travel_time, 'ATIS: ', route_times[route_name], 'atis_average: ', average)
             else:
                 if(route_times == {}):
                     average = (0.6*(float(old_travel_time)) + 0.4*new_travel_time)
                 else:#ATIS
                     average = 0.4 * ((0.6*float(old_travel_time) + 0.4*new_travel_time)) + 0.6 * (route_times[route_name])
-                    print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'atis: ', average)
+                    print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'ATIS: ', route_times[route_name], 'atis_average: ', average)
 
             carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a', newline='')
             writer = csv.writer(carFile)

@@ -33,7 +33,7 @@ def atis_update_information(trips,vehicle_information):
         for x in range(2,len(vehicle_information[trip["carID"]])):
             vehicle_average_speed += vehicle_information[trip["carID"]][x]
         vehicle_average_speed = vehicle_average_speed / (len(vehicle_information[trip["carID"]]) - 2)
-        vehicle_average_time = vehicle_information[trip["carID"]][0] / vehicle_average_speed
+        vehicle_average_time = ( vehicle_information[trip["carID"]][0] / vehicle_average_speed ) + vehicle_information[trip["carID"]][1]
         try:
             routes_information[trip["routeName"]]
             route_times[trip["routeName"]]
@@ -42,14 +42,12 @@ def atis_update_information(trips,vehicle_information):
             route_times[trip["routeName"]] = 0
         routes_information[trip["routeName"]].append(vehicle_average_time)
     
-    # print(routes_information)
     for routes in routes_information:
-        route_speed = 0
-        for speeds in routes_information[routes]:
-            route_speed += speeds
-        route_average_speed = route_speed / len(routes_information[routes])
-        route_times[routes] = route_average_speed
-
+        route_time = 0
+        for time in routes_information[routes]:
+            route_time += time
+        route_average_time = route_time / len(routes_information[routes])
+        route_times[routes] =  (route_times[routes] + route_average_time) / 2
     return route_times
 
 
@@ -105,7 +103,7 @@ routes_information = {}
 route_times = {}
 trips = []
     
-max_episodes = 100
+max_episodes = 20
 episode = 1
 
 traci.start(sumoCmd)
@@ -136,7 +134,7 @@ while episode <= max_episodes:
     update_beliefs(episode, trips, vehicle_information, route_times)   
     # Reset vehicle information
     vehicle_information = {}
-    route_times = {}
+    # route_times = {}
 
     # Reset routes information
     routes_information = {}
