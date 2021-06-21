@@ -22,7 +22,7 @@ car_type(1, "type1").
 car_type(2, "type2").
 
 // desirable_arrival_time(CarID, DesirableArrivalTime).
-desirable_arrival_time(1, 0090).
+desirable_arrival_time(1, -90).
 desirable_arrival_time(2, 0100).
 
 
