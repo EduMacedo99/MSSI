@@ -81,20 +81,30 @@ def update_beliefs(episode, trips, list, route_times={}):
             if (float(old_travel_time) == float(0)):
                 if(route_times == {}):
                     average = new_travel_time
-                else:
+                else:#ATIS
                     average = 0.4 * (new_travel_time) + 0.6 * (route_times[route_name])
                     print('bdi: ', new_travel_time, 'atis: ', average)
             else:
                 if(route_times == {}):
                     average = (0.6*(float(old_travel_time)) + 0.4*new_travel_time)
-                else:
+                else:#ATIS
                     average = 0.4 * ((0.6*float(old_travel_time) + 0.4*new_travel_time)) + 0.6 * (route_times[route_name])
                     print('bdi: ', ((float(old_travel_time) + new_travel_time)/ 2), 'atis: ', average)
 
             carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a', newline='')
             writer = csv.writer(carFile)
-            # carID,route,routeAverageTravelTime,speed,distance,travelTime,delay
-            carCSV = [carID,route_name,average,average_speed,list[carID][0],new_travel_time,delay]
+                                                           
+            carCSV = [ trips[int(carID)-1]["arrivalTime"], # Desirable Arrivel Time      
+                      trips[int(carID)-1]["departureTime"], #Theoretical Departure Time 
+                      route_name, # Route
+                      average,# Avg.Route Time        
+                      average_speed, #Avg.Speed
+                      list[carID][0], #Distance 	
+                      new_travel_time, #Travel Time 
+                      delay, #Departure Delay 
+                      delay + new_travel_time + float(trips[int(carID)-1]["departureTime"]),  #Arrival Time    
+                      float(trips[int(carID)-1]["arrivalTime"]) - (delay + new_travel_time +  float(trips[int(carID)-1]["departureTime"]))]#Arrival delay    
+
             writer.writerow(carCSV)
             carFile.close()
 

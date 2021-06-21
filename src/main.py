@@ -116,7 +116,7 @@ while episode <= max_episodes:
 
     # Abre 1 janela do Sumo (Clicar start o mesmo numero de episodios)
     if accident:
-        if (episode < 15):
+        if (episode < 50):
             traci.load(['-c', "SUMO/clear_road.sumocfg", "--start"])
         else:
             traci.load(['-c', "SUMO/accident.sumocfg", "--start"])

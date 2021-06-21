@@ -283,5 +283,5 @@ plans = """
        ?route(R, CarID, AverageTravelTime);
        +tripDepartureTime(DesirableArrivalTime - AverageTravelTime, R);
        ?car_type(CarID, TypeName);
-       .print("{'carID': '", CarID, "','routeName': '",R, "','type': '", TypeName, "', 'departureTime': '", DesirableArrivalTime - AverageTravelTime, "'}").
+       .print("{'carID': '", CarID, "','routeName': '",R, "','type': '", TypeName, "', 'departureTime': '", DesirableArrivalTime - AverageTravelTime, "','arrivalTime': '",DesirableArrivalTime, "'}").
 """
