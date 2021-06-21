@@ -94,16 +94,19 @@ def update_beliefs(episode, trips, list, route_times={}):
             carFile = open('CarCSV/'+"car_" + str(carID) + '.csv', 'a', newline='')
             writer = csv.writer(carFile)
                                                            
-            carCSV = [ trips[int(carID)-1]["arrivalTime"], # Desirable Arrivel Time      
-                      trips[int(carID)-1]["departureTime"], #Theoretical Departure Time 
-                      route_name, # Route
-                      average,# Avg.Route Time        
-                      average_speed, #Avg.Speed
-                      list[carID][0], #Distance 	
-                      new_travel_time, #Travel Time 
-                      delay, #Departure Delay 
-                      delay + new_travel_time + float(trips[int(carID)-1]["departureTime"]),  #Arrival Time    
-                      float(trips[int(carID)-1]["arrivalTime"]) - (delay + new_travel_time +  float(trips[int(carID)-1]["departureTime"]))]#Arrival delay    
+            carCSV = [ 
+                        carID,
+                        trips[int(carID)-1]["arrivalTime"], # Desirable Arrivel Time      
+                        trips[int(carID)-1]["departureTime"], #Theoretical Departure Time 
+                        route_name, # Route
+                        average,# Avg.Route Time        
+                        average_speed, #Avg.Speed
+                        list[carID][0], #Distance 	
+                        new_travel_time, #Travel Time 
+                        delay, #Departure Delay 
+                        delay + new_travel_time + float(trips[int(carID)-1]["departureTime"]),  #Arrival Time    
+                        float(trips[int(carID)-1]["arrivalTime"]) - (delay + new_travel_time +  float(trips[int(carID)-1]["departureTime"])) #Arrival delay
+                    ]     
 
             writer.writerow(carCSV)
             carFile.close()
