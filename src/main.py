@@ -188,7 +188,7 @@ while episode <= max_episodes:
                 vehicle_information[vehicles[i]].append(traci.vehicle.getSpeed(vehicles[i]))
           
 
-    print_vehicle_information(vehicle_information)
+    # print_vehicle_information(vehicle_information)
     
     if atis:
         route_times = atis_update_information(trips,vehicle_information)
@@ -196,7 +196,17 @@ while episode <= max_episodes:
         
 
     episode = episode + 1
-    
+
+
+fout=open("CarCSV/allCars.csv","a")
+# now the rest:    
+for num in range(1,21):
+    f = open("CarCSV/car_" + str(num) + ".csv")
+    for line in f:
+        fout.write(line)
+    f.close() # not really needed
+fout.close()
+
 traci.close(False)
     
         
