@@ -47,7 +47,10 @@ def atis_update_information(trips,vehicle_information):
         for time in routes_information[routes]:
             route_time += time
         route_average_time = route_time / len(routes_information[routes])
-        route_times[routes] =  (route_times[routes] + route_average_time) / 2
+        if route_times[routes] != 0:
+            route_times[routes] =  (route_times[routes] + route_average_time) / 2
+        else:
+            route_times[routes] = route_average_time
     return route_times
 
 
@@ -103,7 +106,7 @@ routes_information = {}
 route_times = {}
 trips = []
     
-max_episodes = 20
+max_episodes = 100
 episode = 1
 
 traci.start(sumoCmd)
