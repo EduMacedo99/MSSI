@@ -1,34 +1,23 @@
 ### MSSI
 
-# AgentSpeak(ficheiro) <-> Traci <-> SUMO
+# How to run
+Go to src folder and run the following command:
 
-1- criar ficheiro .asl com os beliefs e goals/desires iniciais
-2- correr o comando que executa o ficheiro e analisar o output que vai ser do tipo: (agent_id, route_id, departure_time?), ...
-3- add cars com os parametros de cima, com o Traci no SUMO
-4- analisar output dos tempos
-5- atualizar os beliefs no ficheiro .asl
-6- repetir 2
+```python3 main.py Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]```
 
+or
 
-TODO: 
-* Como se faz o while de episodios (terminar o sumo e voltar a abrir?)
-* como adicionar os carros, ler ficheiro' ou random
+```python main.py Num_Random_Cars [0-1000] Agent [BDI ... ATIS] Accident [True - False]```
 
 # Scenario 1:
-In the first scenario, we assume that the drivers can not ask for help. Hence their decision-making process to choose the route is solely done by their own set of base beliefs.
+In the first scenario, we assume that the drivers can not ask for help. Hence their decision-making process to choose the route is solely based on their own set of base beliefs.
 
 # Scenario 2:
-A traveler information system (ATIS) agent will be added to the system as a second scenario. Thus each driver at the beginning of the run can ask for advice (occupation, travel time, average speed, etc.), thereby based on the ATIS response and in their set of beliefs, they will choose the most suitable route.
-- get velocidade e distancia de cada edge do sumo ou guardar no main.py
-- atualizar o belief do average time com esses valores 60% ATIS_TIME + 40% CAR_BELIEF_SCENARIO_1
+A traveler information system (ATIS) agent will be added to the system as a second scenario. Thus each driver at the beginning of the run can ask for advice (travel time, average speed, etc.), thereby based on the ATIS response and on their set of beliefs, they will choose the most suitable route.
+
 
 # Scenario 3:
-As a final scenario, it would be interesting to study the network by reversing the roles, which means, the BDI agent would be the ATIS instead of the drivers. Therefore the population of drivers would ask for help to choose the route in the beginning of the run, and our ATIS agent based on it is set of beliefs would answer with the route that is appropriate for each driver.
-- route(routeName, capacidade, average_time)
+For the third scenario, we assume that the drivers can not ask for help. Hence their decision-making process to choose the route is solely based on their own set of base beliefs. From episode 50 onward there is a simmulated accident in the network, which reduces the number of lanes in one of the routes.
 
-
-# TODO - Tests:
-    Testar 5 carros bdi
-    Testar 5 carros bdi tipo de carros diferentes (velocidade)
-    Testar 5 carros bdi mais transito
-    Testar 5 carros bdi tipo de carros diferentes mais transito
+# Scenario 4:
+A traveler information system (ATIS) agent will be added to the system as a second scenario. Thus each driver at the beginning of the run can ask for advice (travel time, average speed, etc.), thereby based on the ATIS response and on their set of beliefs, they will choose the most suitable route. From episode 50 onward there is a simmulated accident in the network, which reduces the number of lanes in one of the routes.
